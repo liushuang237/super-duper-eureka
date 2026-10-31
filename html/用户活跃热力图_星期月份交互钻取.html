@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>用户活跃热力图 · 星期×月份交互钻取</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:"Microsoft YaHei",sans-serif;color:#e8f0ff;background:#070c1a;min-height:100vh;padding:24px;display:flex;flex-direction:column;align-items:center;}
+  h1{font-size:22px;background:linear-gradient(90deg,#5ab8ff,#8ff0be);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:6px;}
+  .sub{font-size:12.5px;color:#8fa3c4;margin-bottom:6px;}
+  .tabs{display:flex;gap:10px;margin-bottom:14px;}
+  .tabs button{padding:8px 18px;border:1px solid #3a5b95;background:#10234a;color:#cfe1ff;border-radius:8px;cursor:pointer;font-size:13px;}
+  .tabs button.on{background:linear-gradient(180deg,#2a5bb0,#1a3d80);border-color:#5ab8ff;color:#fff;font-weight:bold;}
+  #chart{width:900px;height:460px;max-width:96vw;}
+  .note{font-size:11px;color:#8fa3c4;margin-top:14px;max-width:820px;text-align:center;}
+</style>
+</head>
+<body>
+<h1>电商用户活跃热力图 · 星期 × 月份</h1>
+<div class="sub">同一指标在不同星期与月份的分布密度 · 点击切换指标下钻</div>
+<div class="tabs">
+  <button class="on" data-k="sales">销售额 Sales</button>
+  <button data-k="profit">利润 Profit</button>
+  <button data-k="qty">数量 Quantity</button>
+</div>
+<div id="chart"></div>
+<div class="note">数据口径：基于 Sample Superstore 订单数据（2014-2017）按 星期×月份 聚合实测统计。深色格=数值高，用于定位销售与利润的最佳时段。</div>
+<script>
+(function(){
+  var chart=echarts.init(document.getElementById('chart'));
+  var days=['周一','周二','周三','周四','周五','周六','周日'];
+  var months=Array.from({length:12},function(_,i){return (i+1)+'月';});
+  var dataByKey={
+    sales: [[0, 0, 6544], [1, 0, 4454], [2, 0, 40322], [3, 0, 8659], [4, 0, 14141], [5, 0, 22265], [6, 0, 13388], [7, 0, 16938], [8, 0, 23975], [9, 0, 27321], [10, 0, 40373], [11, 0, 32183], [0, 1, 12593], [1, 1, 10551], [2, 1, 35554], [3, 1, 26291], [4, 1, 22232], [5, 1, 29456], [6, 1, 35971], [7, 1, 25846], [8, 1, 64822], [9, 1, 40811], [10, 1, 58471], [11, 1, 68237], [0, 2, 15384], [1, 2, 11815], [2, 2, 19291], [3, 2, 38111], [4, 2, 35371], [5, 2, 26032], [6, 2, 26565], [7, 2, 23460], [8, 2, 43800], [9, 2, 25072], [10, 2, 53941], [11, 2, 67454], [0, 3, 16872], [1, 3, 9007], [2, 3, 24855], [3, 3, 18763], [4, 3, 19475], [5, 3, 23187], [6, 3, 20411], [7, 3, 21126], [8, 3, 52434], [9, 3, 48521], [10, 3, 43854], [11, 3, 63089], [0, 4, 30430], [1, 4, 7575], [2, 4, 28442], [3, 4, 18878], [4, 4, 41818], [5, 4, 26395], [6, 4, 29770], [7, 4, 34870], [8, 4, 60541], [9, 4, 35487], [10, 4, 68206], [11, 4, 46380], [0, 5, 9259], [1, 5, 5772], [2, 5, 58439], [3, 5, 16890], [4, 5, 13164], [5, 5, 18620], [6, 5, 15124], [7, 5, 30073], [8, 5, 44120], [9, 5, 25395], [10, 5, 58715], [11, 5, 26784], [0, 6, 4984], [1, 6, 10573], [2, 6, 3766], [3, 6, 10502], [4, 6, 12560], [5, 6, 7502], [6, 6, 7769], [7, 6, 9505], [8, 6, 19187], [9, 6, 4514], [10, 6, 29103], [11, 6, 26088]],
+    profit: [[0, 0, -206], [1, 0, 237], [2, 0, 8828], [3, 0, 1079], [4, 0, 2157], [5, 0, 3719], [6, 0, 1328], [7, 0, 2137], [8, 0, 4256], [9, 0, 1459], [10, 0, 6482], [11, 0, 1240], [0, 1, -53], [1, 1, 696], [2, 1, 7401], [3, 1, -272], [4, 1, 3527], [5, 1, 2099], [6, 1, 3267], [7, 1, 4497], [8, 1, 2284], [9, 1, 6201], [10, 1, 4134], [11, 1, 9587], [0, 2, 1643], [1, 2, 2949], [2, 2, 1717], [3, 2, 7461], [4, 2, 5769], [5, 2, 3841], [6, 2, -487], [7, 2, 4068], [8, 2, 5315], [9, 2, 4012], [10, 2, 310], [11, 2, 11115], [0, 3, 2292], [1, 3, 1496], [2, 3, 1815], [3, 3, 2089], [4, 3, 2960], [5, 3, 4065], [6, 3, 2841], [7, 3, 1025], [8, 3, 7485], [9, 3, 15224], [10, 3, 1726], [11, 3, 11206], [0, 4, 6725], [1, 4, 1106], [2, 4, 1752], [3, 4, -3393], [4, 4, 5118], [5, 4, 3388], [6, 4, 4896], [7, 4, 6344], [8, 4, 3866], [9, 4, -48], [10, 4, 10550], [11, 4, 5992], [0, 5, 756], [1, 5, 1032], [2, 5, 6917], [3, 5, 2539], [4, 5, 501], [5, 5, 2596], [6, 5, 1348], [7, 5, 3204], [8, 5, 9921], [9, 5, 5635], [10, 5, 7165], [11, 5, 2780], [0, 6, -1660], [1, 6, 2774], [2, 6, 911], [3, 6, 2120], [4, 6, 2812], [5, 6, 1796], [6, 6, 818], [7, 6, 1663], [8, 6, 4104], [9, 6, 729], [10, 6, 5170], [11, 6, 2307]],
+    qty: [[0, 0, 98], [1, 0, 117], [2, 0, 298], [3, 0, 189], [4, 0, 327], [5, 0, 308], [6, 0, 294], [7, 0, 255], [8, 0, 483], [9, 0, 484], [10, 0, 733], [11, 0, 558], [0, 1, 180], [1, 1, 195], [2, 1, 495], [3, 1, 527], [4, 1, 443], [5, 1, 457], [6, 1, 589], [7, 1, 433], [8, 1, 899], [9, 1, 640], [10, 1, 843], [11, 1, 1213], [0, 2, 364], [1, 2, 179], [2, 2, 333], [3, 2, 392], [4, 2, 558], [5, 2, 471], [6, 2, 553], [7, 2, 440], [8, 2, 880], [9, 2, 585], [10, 2, 960], [11, 2, 1110], [0, 3, 323], [1, 3, 156], [2, 3, 387], [3, 3, 518], [4, 3, 384], [5, 3, 476], [6, 3, 396], [7, 3, 434], [8, 3, 918], [9, 3, 453], [10, 3, 959], [11, 3, 823], [0, 4, 390], [1, 4, 235], [2, 4, 523], [3, 4, 332], [4, 4, 577], [5, 4, 530], [6, 4, 480], [7, 4, 620], [8, 4, 1040], [9, 4, 603], [10, 4, 1052], [11, 4, 1025], [0, 5, 164], [1, 5, 113], [2, 5, 467], [3, 5, 349], [4, 5, 366], [5, 5, 330], [6, 5, 280], [7, 5, 526], [8, 5, 603], [9, 5, 344], [10, 5, 824], [11, 5, 612], [0, 6, 50], [1, 6, 72], [2, 6, 128], [3, 6, 148], [4, 6, 220], [5, 6, 140], [6, 6, 145], [7, 6, 122], [8, 6, 292], [9, 6, 64], [10, 6, 422], [11, 6, 356]]
+  };
+  var keyName={sales:'销售额',profit:'利润',qty:'数量'};
+  var MAXV=68237;
+  function render(key){
+    chart.setOption({
+      tooltip:{position:'top',formatter:function(p){
+        return days[p.value[1]]+' '+months[p.value[0]]+'<br/>'+keyName[key]+'：'+p.value[2];
+      }},
+      grid:{left:50,right:20,top:20,bottom:60},
+      xAxis:{type:'category',data:months,axisLabel:{color:'#9fc6ff',interval:0},splitArea:{show:true}},
+      yAxis:{type:'category',data:days,axisLabel:{color:'#cfe1ff'},splitArea:{show:true}},
+      visualMap:{min:0,max:MAXV,calculable:true,orient:'horizontal',left:'center',bottom:5,
+        inRange:{color:['#0b1833','#123a6e','#1f6fb2','#5ab8ff','#8ff0be','#ffe28a']},
+        textStyle:{color:'#9fc6ff'}},
+      series:[{type:'heatmap',data:dataByKey[key],label:{show:false},
+        emphasis:{itemStyle:{shadowBlur:12,shadowColor:'rgba(90,150,255,.6)'}}}]
+    },true);
+  }
+  render('sales');
+  var btns=document.querySelectorAll('.tabs button');
+  btns.forEach(function(b){
+    b.onclick=function(){
+      btns.forEach(function(x){x.classList.remove('on');});
+      b.classList.add('on');
+      render(b.getAttribute('data-k'));
+    };
+  });
+  window.addEventListener('resize',function(){chart.resize();});
+})();
+</script>
+</body>
+</html>

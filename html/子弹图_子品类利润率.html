@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>子品类利润率子弹图</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:"Microsoft YaHei",sans-serif;color:#e8f0ff;background:#070c1a;
+       min-height:100vh;padding:24px;display:flex;flex-direction:column;align-items:center;}
+  h1{font-size:22px;background:linear-gradient(90deg,#5ab8ff,#8ff0be);
+     -webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:6px;}
+  .sub{font-size:12.5px;color:#8fa3c4;margin-bottom:6px;}
+  #chart{width:960px;height:520px;max-width:96vw;}
+  .note{font-size:11px;color:#8fa3c4;margin-top:12px;max-width:820px;text-align:center;}
+</style>
+</head>
+<body>
+<h1>Top10 销售额子品类利润率子弹图</h1>
+<div class="sub">橙色条=实际利润率 · 黑色竖线=全品类平均目标线 · 灰/蓝/绿=低中高利润区间 · 悬停查看明细</div>
+<div id="chart"></div>
+<div class="note">数据口径：基于 Sample Superstore 订单数据（2014-2017）按子品类聚合实测统计。</div>
+<script>
+(function(){
+  var chart=echarts.init(document.getElementById('chart'));
+  var labels=["办公电器\n(销售额108213)", "书柜\n(销售额115361)", "复印机\n(销售额150745)", "配件\n(销售额167380)", "机器\n(销售额189925)", "装订夹\n(销售额207354)", "桌子\n(销售额208020)", "收纳\n(销售额224644)", "电话\n(销售额331842)", "椅子\n(销售额335768)"];
+  var bandLow=10.842, bandMid=24.7212, bandHigh=43.4903;
+  var actual=[16.9383, -3.1484, 37.2111, 25.0547, 1.8228, 15.1557, -8.5344, 9.475, 13.576, 8.1078];
+  var target=18.2216;
+  var xMax=59.5377;
+  var n=labels.length;
+  var low=[]; var mid=[]; var hi=[];
+  for(var i=0;i<n;i++){ low.push(bandLow); mid.push(bandMid-bandLow); hi.push(bandHigh-bandMid); }
+  chart.setOption({
+    tooltip:{trigger:'axis',axisPointer:{type:'shadow'},
+      formatter:function(ps){
+        var i=ps[0].dataIndex;
+        return '<b>'+labels[i].split('\n')[0]+'</b><br/>'
+          +'实际利润率：<b>'+actual[i].toFixed(2)+'%</b><br/>'
+          +'低区间(<'+bandLow.toFixed(1)+'%) · 中区间('+bandMid.toFixed(1)+'%) · 高区间(>'+bandMid.toFixed(1)+'%)<br/>'
+          +'目标线(均值)：'+target.toFixed(2)+'%';
+      }},
+    grid:{left:150,right:70,top:30,bottom:40},
+    xAxis:{type:'value',max:xMax,axisLabel:{color:'#9fc6ff',formatter:'{value}%'}},
+    yAxis:{type:'category',data:labels,inverse:true,axisLabel:{color:'#cfe1ff',fontSize:10}},
+    series:[
+      {name:'低区间',type:'bar',stack:'bg',data:low,barWidth:'62%',itemStyle:{color:'#e0e0e0'},z:1},
+      {name:'中区间',type:'bar',stack:'bg',data:mid,itemStyle:{color:'#aec7e8'},z:1},
+      {name:'高区间',type:'bar',stack:'bg',data:hi,itemStyle:{color:'#98df8a'},z:1},
+      {name:'实际利润率',type:'bar',data:actual,barWidth:'40%',
+       itemStyle:{color:'#d6604d',borderRadius:[0,4,4,0]},z:5,
+       label:{show:true,position:'right',color:'#ffb3a7',fontSize:10,
+              formatter:function(p){return p.value.toFixed(2)+'%';}}},
+      {name:'目标线',type:'bar',data:[],
+       markLine:{symbol:'none',silent:true,data:[{xAxis:target}],
+         lineStyle:{color:'#000',width:2.5,type:'solid'},
+         label:{formatter:'目标 '+target.toFixed(2)+'%',color:'#e8f0ff',position:'insideEndTop'}}}
+    ],
+    legend:{textStyle:{color:'#cfe1ff'},top:0},
+  });
+  window.addEventListener('resize',function(){chart.resize();});
+})();
+</script>
+</body>
+</html>

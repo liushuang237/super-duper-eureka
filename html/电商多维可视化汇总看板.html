@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电商多维可视化汇总看板</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Microsoft YaHei", SimHei, sans-serif;
+            background-color: #070c1a;
+            color: #e8f0ff;
+            padding: 24px;
+            margin: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #5ab8ff;
+            margin-top: 0;
+            margin-bottom: 6px;
+            font-size: 24px;
+        }
+        .count {
+            text-align: center;
+            color: #8fa3c4;
+            font-size: 13px;
+            margin-bottom: 16px;
+        }
+        .tab-container {
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        .tab-btn {
+            padding: 10px 18px;
+            margin: 4px;
+            background: #142447;
+            color: #e8f0ff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+        .tab-btn:hover {
+            background: #233b70;
+        }
+        .tab-btn.active {
+            background-color: #5ab8ff;
+            color: #070c1a;
+            font-weight: bold;
+        }
+        .iframe-wrap {
+            width: 100%;
+        }
+        iframe {
+            width: 100%;
+            height: 740px;
+            border: 2px solid #203466;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>电商多维可视化汇总看板</h1>
+    <div class="count" id="countText"></div>
+    <div class="tab-container" id="tabBox">
+        <!-- 按钮由JS自动生成，不用手动在这里加按钮 -->
+    </div>
+    <div class="iframe-wrap">
+        <iframe id="chartFrame" src=""></iframe>
+    </div>
+<script>
+// 由 更新汇总看板.py 自动生成，请勿手改数组；新增图表后重新运行脚本即可
+const name_list = ["superstore_3layer_sankey", "superstore_graph", "superstore_sankey", "superstore_sunburst", "superstore_wordcloud", "三维冰柱图_品类子品类销售额", "三维散点图_星期月份活跃", "三维曲面图_星期月份销售额_动图", "三维瀑布图_子品类月度销售额", "三维生长热力图_星期月份订单数", "冰柱图_品类子品类客户类型销售额", "品类多指标散点图矩阵", "子品类共现网络", "子品类多维平行坐标图", "子弹图_子品类利润率", "弦图_大区订单流向", "旭日图_品类子品类时段", "用户活跃热力图_星期月份交互钻取", "脸图_子品类多指标", "高级热力图_星期月份订单数"];
+const url_list = ["superstore_3layer_sankey.html", "superstore_graph.html", "superstore_sankey.html", "superstore_sunburst.html", "superstore_wordcloud.html", "三维冰柱图_品类子品类销售额.html", "三维散点图_星期月份活跃.html", "三维曲面图_星期月份销售额_动图.html", "三维瀑布图_子品类月度销售额.html", "三维生长热力图_星期月份订单数.html", "冰柱图_品类子品类客户类型销售额.html", "品类多指标散点图矩阵.html", "子品类共现网络.html", "子品类多维平行坐标图.html", "子弹图_子品类利润率.html", "弦图_大区订单流向.html", "旭日图_品类子品类时段.html", "用户活跃热力图_星期月份交互钻取.html", "脸图_子品类多指标.html", "高级热力图_星期月份订单数.html"];
+// ======================================
+const tabBox = document.getElementById("tabBox");
+const frame = document.getElementById("chartFrame");
+document.getElementById("countText").innerText = "共 " + name_list.length + " 张动态图表 · 点击切换";
+name_list.forEach((name, idx) => {
+    const btn = document.createElement("button");
+    btn.className = "tab-btn";
+    btn.innerText = name;
+    btn.onclick = () => switchTab(idx);
+    tabBox.appendChild(btn);
+});
+function switchTab(index) {
+    frame.src = url_list[index];
+    document.querySelectorAll(".tab-btn").forEach((b, i) => {
+        b.classList.toggle("active", i === index);
+    });
+}
+switchTab(0);
+</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>弦图 · 大区客户跨区购买流向</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:"Microsoft YaHei",sans-serif;background:#0A1F44;color:#e8f0ff;
+       min-height:100vh;padding:24px;display:flex;flex-direction:column;align-items:center;}
+  h1{font-size:22px;color:#FFE100;margin-bottom:6px;}
+  .sub{font-size:12.5px;color:#CFE6FF;margin-bottom:6px;}
+  svg{max-width:96vw;}
+  #tip{min-height:44px;font-size:15px;color:#CFE6FF;margin-top:10px;text-align:center;}
+  #tip b{color:#FFE100;}
+  .note{font-size:11px;color:#6FB7FF;margin-top:6px;text-align:center;}
+</style>
+</head>
+<body>
+<h1>弦 图 · 大区客户跨区购买流向</h1>
+<div class="sub">弧长=常住区订单量 · 弦=跨区往来 · 鼠标悬停查看明细</div>
+<svg viewBox="0 0 640 590" xmlns="http://www.w3.org/2000/svg">
+  <path class="arc" d="M 320.0 90.0 A 215 215 0 0 1 521.8 230.7" stroke="#FFE100" stroke-width="24" fill="none" stroke-linecap="butt" opacity="0.95" data-r="中部" data-v="2049"/><line class="arc" x1="430.7" y1="146.3" x2="447.9" y2="121.6" stroke="#FFE100" stroke-width="3.5" data-r="中部" data-v="2049" opacity="0.95"/>
+<path class="arc" d="M 525.6 242.1 A 215 215 0 0 1 306.7 519.6" stroke="#9FE8FF" stroke-width="24" fill="none" stroke-linecap="butt" opacity="0.95" data-r="东部" data-v="3246"/><line class="arc" x1="471.9" y1="424.8" x2="495.6" y2="443.5" stroke="#FFE100" stroke-width="3.5" data-r="东部" data-v="3246" opacity="0.95"/>
+<path class="arc" d="M 294.8 518.5 A 215 215 0 0 1 151.2 438.1" stroke="#6FB7FF" stroke-width="24" fill="none" stroke-linecap="butt" opacity="0.95" data-r="南部" data-v="1321"/><line class="arc" x1="225.5" y1="473.8" x2="210.8" y2="500.1" stroke="#FFE100" stroke-width="3.5" data-r="南部" data-v="1321" opacity="0.95"/>
+<path class="arc" d="M 144.0 428.5 A 215 215 0 0 1 308.0 90.3" stroke="#4FC3F7" stroke-width="24" fill="none" stroke-linecap="butt" opacity="0.95" data-r="西部" data-v="3578"/><line class="arc" x1="145.9" y1="220.6" x2="118.8" y2="207.4" stroke="#FFE100" stroke-width="3.5" data-r="西部" data-v="3578" opacity="0.95"/>
+<path class="ribbon" d="M 320.0 92.2 A 212.8 212.8 0 0 1 521.2 235.6 L 494.8 244.7 A 184.9 184.9 0 0 0 427.3 154.5 Z" fill="#FFE100" opacity="0.45" data-a="中部" data-b="中部" data-v="1042"/>
+<path class="ribbon" d="M 320.0 92.2 A 212.8 212.8 0 0 1 521.2 235.6 L 494.8 244.7 A 184.9 184.9 0 0 0 427.3 154.5 Z" fill="#FFE100" opacity="0.12" data-a="中部" data-b="中部" data-v="1042"/>
+<path class="ribbon" d="M 521.2 235.6 A 212.8 212.8 0 0 1 531.7 283.3 L 504.5 292.6 A 184.9 184.9 0 0 0 496.8 250.9 Z" fill="#FFE100" opacity="0.45" data-a="中部" data-b="东部" data-v="387"/>
+<path class="ribbon" d="M 521.2 235.6 A 212.8 212.8 0 0 1 531.7 283.3 L 504.5 292.6 A 184.9 184.9 0 0 0 496.8 250.9 Z" fill="#FFE100" opacity="0.12" data-a="中部" data-b="东部" data-v="387"/>
+<path class="ribbon" d="M 531.7 283.3 A 212.8 212.8 0 0 1 532.7 313.5 L 272.5 483.7 A 184.9 184.9 0 0 0 298.3 488.6 Z" fill="#FFE100" opacity="0.45" data-a="中部" data-b="南部" data-v="239"/>
+<path class="ribbon" d="M 531.7 283.3 A 212.8 212.8 0 0 1 532.7 313.5 L 272.5 483.7 A 184.9 184.9 0 0 0 298.3 488.6 Z" fill="#FFE100" opacity="0.12" data-a="中部" data-b="南部" data-v="239"/>
+<path class="ribbon" d="M 532.7 313.5 A 212.8 212.8 0 0 1 525.3 361.1 L 148.7 374.5 A 184.9 184.9 0 0 0 168.7 411.2 Z" fill="#FFE100" opacity="0.45" data-a="中部" data-b="西部" data-v="381"/>
+<path class="ribbon" d="M 532.7 313.5 A 212.8 212.8 0 0 1 525.3 361.1 L 148.7 374.5 A 184.9 184.9 0 0 0 168.7 411.2 Z" fill="#FFE100" opacity="0.12" data-a="中部" data-b="西部" data-v="381"/>
+<path class="ribbon" d="M 532.4 290.8 A 212.8 212.8 0 0 1 526.7 355.8 L 475.2 405.5 A 184.9 184.9 0 0 0 498.4 353.7 Z" fill="#9FE8FF" opacity="0.45" data-a="东部" data-b="中部" data-v="518"/>
+<path class="ribbon" d="M 532.4 290.8 A 212.8 212.8 0 0 1 526.7 355.8 L 475.2 405.5 A 184.9 184.9 0 0 0 498.4 353.7 Z" fill="#FFE100" opacity="0.12" data-a="东部" data-b="中部" data-v="518"/>
+<path class="ribbon" d="M 526.7 355.8 A 212.8 212.8 0 0 1 180.6 465.9 L 198.9 444.7 A 184.9 184.9 0 0 0 376.0 481.2 Z" fill="#9FE8FF" opacity="0.45" data-a="东部" data-b="东部" data-v="1719"/>
+<path class="ribbon" d="M 526.7 355.8 A 212.8 212.8 0 0 1 180.6 465.9 L 198.9 444.7 A 184.9 184.9 0 0 0 376.0 481.2 Z" fill="#FFE100" opacity="0.12" data-a="东部" data-b="东部" data-v="1719"/>
+<path class="ribbon" d="M 180.6 465.9 A 212.8 212.8 0 0 1 149.3 432.2 L 235.2 469.3 A 184.9 184.9 0 0 0 272.5 483.7 Z" fill="#9FE8FF" opacity="0.45" data-a="东部" data-b="南部" data-v="364"/>
+<path class="ribbon" d="M 180.6 465.9 A 212.8 212.8 0 0 1 149.3 432.2 L 235.2 469.3 A 184.9 184.9 0 0 0 272.5 483.7 Z" fill="#FFE100" opacity="0.12" data-a="东部" data-b="南部" data-v="364"/>
+<path class="ribbon" d="M 149.3 432.2 A 212.8 212.8 0 0 1 114.1 359.1 L 135.1 305.4 A 184.9 184.9 0 0 0 148.7 374.5 Z" fill="#9FE8FF" opacity="0.45" data-a="东部" data-b="西部" data-v="645"/>
+<path class="ribbon" d="M 149.3 432.2 A 212.8 212.8 0 0 1 114.1 359.1 L 135.1 305.4 A 184.9 184.9 0 0 0 148.7 374.5 Z" fill="#FFE100" opacity="0.12" data-a="东部" data-b="西部" data-v="645"/>
+<path class="ribbon" d="M 222.4 494.2 A 212.8 212.8 0 0 1 200.2 480.9 L 461.8 423.6 A 184.9 184.9 0 0 0 475.2 405.5 Z" fill="#6FB7FF" opacity="0.45" data-a="南部" data-b="中部" data-v="205"/>
+<path class="ribbon" d="M 222.4 494.2 A 212.8 212.8 0 0 1 200.2 480.9 L 461.8 423.6 A 184.9 184.9 0 0 0 475.2 405.5 Z" fill="#FFE100" opacity="0.12" data-a="南部" data-b="中部" data-v="205"/>
+<path class="ribbon" d="M 200.2 480.9 A 212.8 212.8 0 0 1 176.4 462.1 L 136.3 326.1 A 184.9 184.9 0 0 0 141.2 352.0 Z" fill="#6FB7FF" opacity="0.45" data-a="南部" data-b="东部" data-v="240"/>
+<path class="ribbon" d="M 200.2 480.9 A 212.8 212.8 0 0 1 176.4 462.1 L 136.3 326.1 A 184.9 184.9 0 0 0 141.2 352.0 Z" fill="#FFE100" opacity="0.12" data-a="南部" data-b="东部" data-v="240"/>
+<path class="ribbon" d="M 176.4 462.1 A 212.8 212.8 0 0 1 107.9 323.0 L 135.8 320.6 A 184.9 184.9 0 0 0 154.1 386.7 Z" fill="#6FB7FF" opacity="0.45" data-a="南部" data-b="南部" data-v="627"/>
+<path class="ribbon" d="M 176.4 462.1 A 212.8 212.8 0 0 1 107.9 323.0 L 135.8 320.6 A 184.9 184.9 0 0 0 154.1 386.7 Z" fill="#FFE100" opacity="0.12" data-a="南部" data-b="南部" data-v="627"/>
+<path class="ribbon" d="M 107.9 323.0 A 212.8 212.8 0 0 1 107.6 291.5 L 137.1 278.1 A 184.9 184.9 0 0 0 135.1 305.4 Z" fill="#6FB7FF" opacity="0.45" data-a="南部" data-b="西部" data-v="249"/>
+<path class="ribbon" d="M 107.9 323.0 A 212.8 212.8 0 0 1 107.6 291.5 L 137.1 278.1 A 184.9 184.9 0 0 0 135.1 305.4 Z" fill="#FFE100" opacity="0.12" data-a="南部" data-b="西部" data-v="249"/>
+<path class="ribbon" d="M 109.4 274.0 A 212.8 212.8 0 0 1 131.7 205.8 L 414.4 464.0 A 184.9 184.9 0 0 0 461.8 423.6 Z" fill="#4FC3F7" opacity="0.45" data-a="西部" data-b="中部" data-v="570"/>
+<path class="ribbon" d="M 109.4 274.0 A 212.8 212.8 0 0 1 131.7 205.8 L 414.4 464.0 A 184.9 184.9 0 0 0 461.8 423.6 Z" fill="#FFE100" opacity="0.12" data-a="西部" data-b="中部" data-v="570"/>
+<path class="ribbon" d="M 131.7 205.8 A 212.8 212.8 0 0 1 182.0 143.0 L 141.6 256.4 A 184.9 184.9 0 0 0 136.3 326.1 Z" fill="#4FC3F7" opacity="0.45" data-a="西部" data-b="东部" data-v="640"/>
+<path class="ribbon" d="M 131.7 205.8 A 212.8 212.8 0 0 1 182.0 143.0 L 141.6 256.4 A 184.9 184.9 0 0 0 136.3 326.1 Z" fill="#FFE100" opacity="0.12" data-a="西部" data-b="东部" data-v="640"/>
+<path class="ribbon" d="M 182.0 143.0 A 212.8 212.8 0 0 1 222.9 115.6 L 143.1 251.2 A 184.9 184.9 0 0 0 135.5 293.3 Z" fill="#4FC3F7" opacity="0.45" data-a="西部" data-b="南部" data-v="390"/>
+<path class="ribbon" d="M 182.0 143.0 A 212.8 212.8 0 0 1 222.9 115.6 L 143.1 251.2 A 184.9 184.9 0 0 0 135.5 293.3 Z" fill="#FFE100" opacity="0.12" data-a="西部" data-b="南部" data-v="390"/>
+<path class="ribbon" d="M 222.9 115.6 A 212.8 212.8 0 0 1 522.9 369.3 L 496.3 360.9 A 184.9 184.9 0 0 0 439.4 163.8 Z" fill="#4FC3F7" opacity="0.45" data-a="西部" data-b="西部" data-v="1978"/>
+<path class="ribbon" d="M 222.9 115.6 A 212.8 212.8 0 0 1 522.9 369.3 L 496.3 360.9 A 184.9 184.9 0 0 0 439.4 163.8 Z" fill="#FFE100" opacity="0.12" data-a="西部" data-b="西部" data-v="1978"/>
+<text x="467.0" y="94.2" text-anchor="middle" font-size="19" font-weight="bold" fill="#FFE100">中部<tspan x="467.0" dy="24" font-size="13.5" font-weight="normal" fill="#CFE6FF">2049 单</tspan></text>
+<text x="521.8" y="464.2" text-anchor="middle" font-size="19" font-weight="bold" fill="#9FE8FF">东部<tspan x="521.8" dy="24" font-size="13.5" font-weight="normal" fill="#CFE6FF">3246 单</tspan></text>
+<text x="194.5" y="529.3" text-anchor="middle" font-size="19" font-weight="bold" fill="#6FB7FF">南部<tspan x="194.5" dy="24" font-size="13.5" font-weight="normal" fill="#CFE6FF">1321 单</tspan></text>
+<text x="88.8" y="192.9" text-anchor="middle" font-size="19" font-weight="bold" fill="#4FC3F7">西部<tspan x="88.8" dy="24" font-size="13.5" font-weight="normal" fill="#CFE6FF">3578 单</tspan></text>
+  <text x="320" y="292" text-anchor="middle" font-size="15" fill="#CFE6FF">东部 — 西部 跨区</text>
+  <text x="320" y="322" text-anchor="middle" font-size="19" font-weight="bold" fill="#FFE100">1285 个跨区订单</text>
+</svg>
+<div id="tip">悬停弦带或大区弧段查看明细</div>
+<div class="note">数据口径：常住大区（客户订单最多的区）× 订单所在大区，2023-2026 实测统计。纯 SVG 绘制，无外部依赖。</div>
+<script>
+(function(){
+  var ribbons=document.querySelectorAll('.ribbon');
+  var arcs=document.querySelectorAll('.arc');
+  var tip=document.getElementById('tip');
+  function dim(except){
+    ribbons.forEach(function(p){ if(p!==except) p.style.opacity='0.12'; });
+    arcs.forEach(function(p){ if(p!==except) p.style.opacity='0.3'; });
+  }
+  function restore(){
+    ribbons.forEach(function(p){ p.style.opacity=''; });
+    arcs.forEach(function(p){ p.style.opacity=''; });
+  }
+  ribbons.forEach(function(p){
+    p.addEventListener('mouseover',function(){
+      dim(p);
+      tip.innerHTML='<b>'+p.getAttribute('data-a')+' → '+p.getAttribute('data-b')+'</b><br/>'+p.getAttribute('data-v')+' 个订单';
+    });
+    p.addEventListener('mouseout',function(){ restore(); tip.innerHTML='悬停弦带或大区弧段查看明细'; });
+  });
+  arcs.forEach(function(p){
+    p.addEventListener('mouseover',function(){
+      dim(p);
+      var r=p.getAttribute('data-r');
+      var rel=document.querySelectorAll('.ribbon[data-a="'+r+'"],.ribbon[data-b="'+r+'"]');
+      rel.forEach(function(q){ q.style.opacity='0.85'; });
+      tip.innerHTML='<b>'+r+'</b><br/>'+p.getAttribute('data-v')+' 个订单';
+    });
+    p.addEventListener('mouseout',function(){ restore(); tip.innerHTML='悬停弦带或大区弧段查看明细'; });
+  });
+})();
+</script>
+</body>
+</html>
